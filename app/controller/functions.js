@@ -81,10 +81,10 @@ exports.error404function =  function(req, res){
 	res.status(404).send({url: req.originalUrl + ' not found'});
 };
 
-exports.error404function =  function(req, res){
+exports.error400function =  function(req, res){
 	res.status(400).send({url: req.originalUrl + ' sdasasd'});
 };
 
-exports.error404function =  function(req, res){
+exports.error500function =  function(req, res){
 	res.status(500).send({url: req.originalUrl + ' nosdsd'});
 };

@@ -1,0 +1,10 @@
+{
+	"dbcredentials" : {
+		"user": "rgpclslwqwkfgh",
+		"host": "ec2-54-235-68-3.compute-1.amazonaws.com",
+		"database": "dbgph9pnk4gj08",	
+		"password": "33885815170ef856dd628a7ecf6a37e016ad37a4397d82b3d60c9bd4a1a5763e",
+		"port": "5432",
+		"ssl": true
+	}
+}
