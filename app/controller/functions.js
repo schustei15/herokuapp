@@ -1,5 +1,28 @@
 "use strict";
+
+//const conString = "postgres://postgres:postgres@localhost:61392/snippet";
+
+// const { Pool } = require('pg');
+// const pool = new Pool({
+//   connectionString: "postgres://postgres:postgres@localhost:61392/snippet",
+//   ssl: true
+// });
+// const { Client } = require('pg')
+// let db = null;
+// const client = new Client({
+// 	user: 'postgres',
+// 	host: 'localhost',
+// 	database: 'snippet',
+// 	password: 'postgres',
+// 	port: 61392
+// 	});
+
+
 var functions = require("./functions.js");
+var	dbconfig = require("../config/dbconfig.json")
+const { Client } = require('pg')
+const client = new Client(dbconfig.dbcredentials);
+client.connect();
 
 exports.getSnippets = function(req, res){
 	if( req.query.id != undefined || req.query.name != undefined ||	req.query.description != undefined ||
@@ -13,7 +36,25 @@ exports.getSnippets = function(req, res){
 };
 
 function getAllSnippets(req, res) {
-	res.send({url: req.originalUrl, type: "get all snippets", callStatus: "success"});
+	client.query('SELECT * FROM test_table').then(function(dbres){
+		var retString = "";	
+		var count = 0;
+		for(let row of dbres.rows){
+			retString += "\"" + count + "\":" + JSON.stringify(row) + ",";
+			count++;
+		}
+		retString = "{" + retString.substring(0,retString.length -1) + "}";
+		console.log(retString);
+		var retJson = JSON.pars(retString);
+		res.send(retJson);
+	}).catch(function(dberr){
+		if(dberr.code === "42P01")
+			functions.error404function(req, res);
+		else if(dberr.code === "42703")
+			functions.error400function(req, res);
+		else
+			functions.error500function(req, res);
+	});
 }
 
 function getSnippetWithAttributes(req, res) {
