@@ -36,7 +36,7 @@ exports.getSnippets = function(req, res){
 };
 
 function getAllSnippets(req, res) {
-	client.query('SELECT * FROM test_table').then(function(dbres){
+	client.query('SELECT * FROM snippet;').then(function(dbres){
 		var retString = "";	
 		var count = 0;
 		for(let row of dbres.rows){
