@@ -12,5 +12,5 @@ module.exports = function(app){
 		.put(functions.updateSnippetById)
 		.delete(functions.deleteSnippetById);
 
-	app.use(functions.error404function);
+	app.use(functions.error404);
 };

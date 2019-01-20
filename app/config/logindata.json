@@ -1,5 +1,5 @@
 {
-	"dbcredentials" : {
+	"dblogindata" : {
 		"user": "rgpclslwqwkfgh",
 		"host": "ec2-54-235-68-3.compute-1.amazonaws.com",
 		"database": "dbgph9pnk4gj08",	
